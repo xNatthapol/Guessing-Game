@@ -5,12 +5,9 @@ import (
 	AuthController "github.com/xNatthapol/guessing-game/internal/controller/auth"
 	"github.com/xNatthapol/guessing-game/internal/middleware"
 	"github.com/xNatthapol/guessing-game/internal/orm"
-
-	"github.com/gin-contrib/cors"
+	"github.com/xNatthapol/guessing-game/internal/routes"
 
 	"log"
-
-	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -19,18 +16,12 @@ func main() {
 		log.Fatalf("Failed to load configuration: %v", err)
 	}
 
+	// Initialize Connection
 	orm.InitDB(cfg.GetDSN())
 
 	// Initialize Auth and Middleware
 	AuthController.InitAuth(cfg)
 	middleware.InitMiddleware(cfg)
 
-	r := gin.Default()
-	r.Use(cors.Default())
-
-	api := r.Group("/api")
-	api.POST("/register", AuthController.Register)
-	api.POST("/login", AuthController.Login)
-
-	r.Run("localhost:8080")
+	routes.Run()
 }
