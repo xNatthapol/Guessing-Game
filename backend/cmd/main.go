@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/xNatthapol/guessing-game/internal/config"
 	AuthController "github.com/xNatthapol/guessing-game/internal/controller/auth"
+	"github.com/xNatthapol/guessing-game/internal/middleware"
 	"github.com/xNatthapol/guessing-game/internal/orm"
 
 	"github.com/gin-contrib/cors"
@@ -20,8 +21,9 @@ func main() {
 
 	orm.InitDB(cfg.GetDSN())
 
-	// Initialize Auth
+	// Initialize Auth and Middleware
 	AuthController.InitAuth(cfg)
+	middleware.InitMiddleware(cfg)
 
 	r := gin.Default()
 	r.Use(cors.Default())
