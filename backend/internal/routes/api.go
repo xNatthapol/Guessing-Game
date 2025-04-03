@@ -16,4 +16,5 @@ func getRoutes() {
 	api := router.Group("/api")
 	addAuthRoutes(api)
 	addUserRoutes(api)
+	addGuessRoutes(api)
 }
