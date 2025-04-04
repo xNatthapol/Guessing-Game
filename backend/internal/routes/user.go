@@ -6,10 +6,8 @@ import (
 	"github.com/xNatthapol/guessing-game/internal/middleware"
 )
 
-func addUserRoutes(rg *gin.RouterGroup) {
-	user := rg.Group("/user", middleware.AuthMiddleware())
-
-	user.GET("/profile", UserController.Profile)
-	user.PUT("/update-username", UserController.UpdateUsername)
-	user.DELETE("/delete", UserController.DeleteUser)
+func addUserRoutes(r *gin.Engine) {
+	r.GET("/user/profile/", middleware.AuthMiddleware(), UserController.Profile)
+	r.PUT("/user/update-username/", middleware.AuthMiddleware(), UserController.UpdateUsername)
+	r.DELETE("/user/delete/", middleware.AuthMiddleware(), UserController.DeleteUser)
 }

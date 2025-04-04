@@ -6,9 +6,7 @@ import (
 	"github.com/xNatthapol/guessing-game/internal/middleware"
 )
 
-func addGuessRoutes(rg *gin.RouterGroup) {
-	guess := rg.Group("/guess", middleware.AuthMiddleware())
-
-	guess.POST("/", GuessController.GuessNumber)
-	guess.GET("/answer", GuessController.AnswerNumber)
+func addGuessRoutes(r *gin.Engine) {
+	r.POST("/guess/", middleware.AuthMiddleware(), GuessController.GuessNumber)
+	r.GET("/guess/answer/", middleware.AuthMiddleware(), GuessController.AnswerNumber)
 }

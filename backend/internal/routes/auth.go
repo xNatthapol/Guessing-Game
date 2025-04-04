@@ -5,9 +5,7 @@ import (
 	AuthController "github.com/xNatthapol/guessing-game/internal/controller/auth"
 )
 
-func addAuthRoutes(rg *gin.RouterGroup) {
-	auth := rg.Group("/auth")
-
-	auth.POST("/register", AuthController.Register)
-	auth.POST("/login", AuthController.Login)
+func addAuthRoutes(r *gin.Engine) {
+	r.POST("/register/", AuthController.Register)
+	r.POST("/login/", AuthController.Login)
 }
