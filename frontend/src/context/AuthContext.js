@@ -1,30 +1,50 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useCallback } from "react";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem("token"),
-  );
+  const [authState, setAuthState] = useState(() => ({
+    token: localStorage.getItem("token") || null,
+    isAuthenticated: !!localStorage.getItem("token"),
+  }));
 
-  const login = (newToken) => {
+  const login = useCallback((newToken) => {
     localStorage.setItem("token", newToken);
-    setToken(newToken);
-    setIsAuthenticated(true);
-  };
+    setAuthState({
+      token: newToken,
+      isAuthenticated: true,
+    });
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem("token");
-    setToken(null);
-    setIsAuthenticated(false);
-  };
+    setAuthState({
+      token: null,
+      isAuthenticated: false,
+    });
+  }, []);
+
+  const getToken = useCallback(() => authState.token, [authState.token]);
 
   return (
-    <AuthContext.Provider value={{ token, isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        token: authState.token,
+        isAuthenticated: authState.isAuthenticated,
+        login,
+        logout,
+        getToken,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+};

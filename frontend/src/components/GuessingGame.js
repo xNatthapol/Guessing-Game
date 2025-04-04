@@ -7,7 +7,7 @@ const GuessingGame = () => {
   const [message, setMessage] = useState("");
   const [showAnswer, setShowAnswer] = useState(false);
   const [answer, setAnswer] = useState(null);
-  const { logout } = useAuth();
+  const { token, logout } = useAuth();
 
   const setTimedMessage = (msg) => {
     setMessage(msg);
@@ -17,7 +17,7 @@ const GuessingGame = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await submitGuess(Number(guess));
+      const result = await submitGuess(Number(guess), token);
       setTimedMessage(result.message);
       setGuess("");
     } catch (err) {
@@ -27,7 +27,7 @@ const GuessingGame = () => {
 
   const handleShowAnswer = async () => {
     try {
-      const result = await getAnswer();
+      const result = await getAnswer(token);
       setAnswer(result.answer);
       setTimedMessage(result.message);
       setShowAnswer(true);
@@ -36,7 +36,7 @@ const GuessingGame = () => {
         setAnswer(null);
       }, 5000);
     } catch (err) {
-      setTimedMessage("Error revealing answer");
+      setTimedMessage("Error showing answer");
     }
   };
 
