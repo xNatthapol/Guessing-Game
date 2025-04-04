@@ -1,15 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { deleteUser } from "../services/user";
+import { deleteUser, getUserProfile } from "../services/user";
 import { useNavigate } from "react-router-dom";
 
 const AccountActions = ({ onClose }) => {
   const { token, logout } = useAuth();
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
+  const [currentUsername, setCurrentUsername] = useState("");
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await getUserProfile(token);
+        setCurrentUsername(response.user.Username);
+      } catch (err) {
+        setMessage("Failed to load profile");
+      }
+    };
+    fetchProfile();
+  }, [token]);
 
   const handleDeleteAccount = async () => {
-    if (window.confirm("Are you sure you want to delete your account?")) {
+    if (
+      window.confirm(
+        `Are you sure to delete your account - ${currentUsername} - ?`,
+      )
+    ) {
       try {
         await deleteUser(token);
         logout();
@@ -24,15 +41,15 @@ const AccountActions = ({ onClose }) => {
 
   return (
     <div>
+      {currentUsername && <p>Username: {currentUsername}</p>}
+
       <button onClick={() => navigate("/change-username")}>
         Change Username
       </button>
 
       <button onClick={handleDeleteAccount}>Delete Account</button>
 
-      {message && (
-        <p style={{ color: "red", marginTop: "0.5rem" }}>{message}</p>
-      )}
+      {message && <p>{message}</p>}
 
       <button onClick={onClose}>Close</button>
     </div>
