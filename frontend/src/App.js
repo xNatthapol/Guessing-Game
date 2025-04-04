@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 import GuessingGame from "./components/GuessingGame";
+import ChangeUsername from "./components/ChangeUsername";
 
 function App() {
   return (
@@ -22,6 +23,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <GuessingGame />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/change-username"
+            element={
+              <ProtectedRoute>
+                <ChangeUsername />
               </ProtectedRoute>
             }
           />

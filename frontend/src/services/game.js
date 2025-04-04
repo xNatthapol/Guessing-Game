@@ -7,7 +7,7 @@ export const submitGuess = async (guess, token) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ guess: guess }),
+    body: JSON.stringify({ guess }),
   });
 
   if (!response.ok) throw new Error("Guess submission failed");

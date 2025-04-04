@@ -16,8 +16,8 @@ const Register = () => {
     try {
       const data = await register(username, password);
       if (data.userId) {
-        setSuccess("Registration successful! Please login.");
-        setTimeout(() => navigate("/login"), 2000);
+        setSuccess("Registration successful! Redirect to login page...");
+        setTimeout(() => navigate("/login"), 1500);
       } else {
         setError(data.message || "Registration failed");
       }

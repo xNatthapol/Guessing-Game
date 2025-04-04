@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import AccountActions from "./AccountActions";
 import { submitGuess, getAnswer } from "../services/game";
 
 const GuessingGame = () => {
@@ -8,6 +9,7 @@ const GuessingGame = () => {
   const [showAnswer, setShowAnswer] = useState(false);
   const [answer, setAnswer] = useState(null);
   const { token, logout } = useAuth();
+  const [showAccountActions, setShowAccountActions] = useState(false);
 
   const setTimedMessage = (msg) => {
     setMessage(msg);
@@ -43,7 +45,7 @@ const GuessingGame = () => {
   return (
     <div>
       <h1>Guessing Game</h1>
-      <p>Guess a number between 1 and 10</p>
+      <p>Guess a hidden number between 1 and 10</p>
       <button onClick={logout} style={{ float: "right" }}>
         Logout
       </button>
@@ -62,8 +64,22 @@ const GuessingGame = () => {
 
       <button onClick={handleShowAnswer}>Show Answer</button>
 
+      <div style={{ position: "relative", display: "inline-block" }}>
+        <button
+          onClick={() => setShowAccountActions(!showAccountActions)}
+          style={{ marginRight: "1rem" }}
+        >
+          Account
+        </button>
+
+        {showAccountActions && (
+          <AccountActions onClose={() => setShowAccountActions(false)} />
+        )}
+      </div>
+
       {showAnswer && <p>The number was: {answer}</p>}
       {message && <p>{message}</p>}
+
     </div>
   );
 };
