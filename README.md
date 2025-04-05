@@ -11,14 +11,19 @@ A full-stack web application guessing game where players guess a hidden number b
 ## User Interface
 
 - **Register Page**
+<img width="1418" alt="image" src="https://github.com/user-attachments/assets/b3d56670-0471-4b9b-9798-323dc97f600d" />
 
 - **Login Page**
+<img width="1419" alt="image" src="https://github.com/user-attachments/assets/2deaf26a-5706-4cfb-86a1-9dac1bf151e0" />
 
 - **Guessing Game Page**
+<img width="1420" alt="image" src="https://github.com/user-attachments/assets/1523b09d-588c-4014-9198-3dd33dfcde7f" />
 
 - **Account Action Component**
+<img width="1417" alt="image" src="https://github.com/user-attachments/assets/45370ce7-8ceb-4c2a-90a7-8f944bab3dd1" />
 
 - **Change Username Page**
+<img width="1418" alt="image" src="https://github.com/user-attachments/assets/aae69d7f-3df9-4ca4-bfd5-e7e85a453ce0" />
 
 ## Tech Stack
 
@@ -89,7 +94,7 @@ A full-stack web application guessing game where players guess a hidden number b
 
 ## API Endpoints
 
-| Endpoint                | Method | Description         | Request                                  | Response                             |
+| Endpoint                | Method | Description         | Request Body                             | Response                             |
 | ----------------------- | ------ | ------------------- | ---------------------------------------- | ------------------------------------ |
 | `/register`             | POST   | Register new user   | `username` (string), `password` (string) | Returns JSON with `userId` (integer) |
 | `/login`                | POST   | Authenticate user   | `username` (string), `password` (string) | Returns JSON with `token` (string)   |
