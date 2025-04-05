@@ -3,89 +3,117 @@
   right: 0;
   top: 100%;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 1rem;
-  min-width: 220px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  padding: 1.25rem;
+  min-width: 240px;
   z-index: 1000;
+  border: 1px solid #eee;
+  animation: fadeIn 0.2s ease-out;
 }
 
 .user-info {
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-bottom: 1px solid #eee;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
   text-align: center;
+  font-size: 1rem;
 }
 
 .user-info strong {
-  color: #ca0f00;
+  color: #ea5900;
+  font-weight: 600;
 }
 
 .actions-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin: 0.5rem 0;
+  gap: 0.75rem;
+  margin: 0.75rem 0;
 }
 
 .action-btn {
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1.25rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 500;
   text-align: left;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .action-btn.change-username {
-  background-color: #ffedc9;
-  color: #ca0f00;
+  background-color: #fff3e0;
+  color: #ea5900;
+  border: 1px solid #ffe0b2;
 }
 
 .action-btn.change-username:hover {
-  background: #ffe2a5;
+  background: #ffe0b2;
+  transform: translateY(-1px);
 }
 
 .action-btn.logout {
-  background: #f8f9fa;
+  background: #f5f5f5;
   color: #333;
+  border: 1px solid #e0e0e0;
 }
 
 .action-btn.logout:hover {
-  background: #e9ecef;
+  background: #eeeeee;
+  transform: translateY(-1px);
 }
 
 .action-btn.delete-account {
-  background: #fff0f0;
-  color: #dc2626;
+  background: #ffebee;
+  color: #d32f2f;
+  border: 1px solid #ffcdd2;
 }
 
 .action-btn.delete-account:hover {
-  background: #fee2e2;
+  background: #ffcdd2;
+  transform: translateY(-1px);
 }
 
 .error-message {
-  color: #dc2626;
-  font-size: 0.8rem;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  background: #fee2e2;
-  border-radius: 4px;
+  color: #d32f2f;
+  font-size: 0.85rem;
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  background: #ffebee;
+  border-radius: 6px;
+  border-left: 4px solid #d32f2f;
 }
 
 .close-btn {
   width: 100%;
-  padding: 0.5rem;
-  margin-top: 0.5rem;
-  background: none;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+  background: #f5f5f5;
   border: none;
+  border-radius: 6px;
   color: #666;
   cursor: pointer;
-  text-align: center;
+  font-size: 0.9rem;
+  transition: all 0.2s;
 }
 
 .close-btn:hover {
+  background: #eeeeee;
   color: #333;
-  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
