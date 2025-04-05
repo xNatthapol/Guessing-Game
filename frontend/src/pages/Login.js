@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { login } from "../services/auth";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./AuthForms.css";
 
 const Login = () => {
@@ -10,9 +10,6 @@ const Login = () => {
   const [error, setError] = useState("");
   const { login: authLogin } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +18,7 @@ const Login = () => {
       const data = await login(username, password);
       if (data.token) {
         authLogin(data.token);
-        navigate(from, { replace: true });
+        navigate("/");
       } else {
         setError(data.message || "Login failed");
       }
