@@ -45,7 +45,7 @@
   border-radius: 8px;
   font-size: 1.25rem;
   width: 100%;
-  max-width: 200px;
+  max-width: 300px;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -69,7 +69,7 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  width: 200px;
+  width: 330px;
   text-align: center;
   transition: all 0.2s ease;
 }
@@ -93,17 +93,24 @@
   background-color: #e0e0e0;
 }
 
-.game-button.secondary {
-  background-color: #f1f1f1;
-  color: #333;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-}
-
 .account-controls {
   position: absolute;
   top: 1rem;
   right: 1rem;
+}
+
+.account-button {
+  background-color: #f1f1f1;
+  color: #333;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 200px;
+  text-align: center;
+  transition: all 0.2s ease;
 }
 
 .message-container {
@@ -112,7 +119,7 @@
   align-items: center;
   margin-top: 1.5rem;
   min-height: 60px;
-  width: 100%;
+  width: 70%;
 }
 
 .message {

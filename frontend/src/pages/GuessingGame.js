@@ -48,7 +48,7 @@ const GuessingGame = () => {
       <div className="account-controls">
         <button
           onClick={() => setShowAccountActions(!showAccountActions)}
-          className="game-button secondary"
+          className="account-button"
         >
           Account
         </button>
