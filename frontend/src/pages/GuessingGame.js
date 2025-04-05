@@ -79,7 +79,7 @@ const GuessingGame = () => {
       </button>
 
       <div className="message-container">
-        {showAnswer && <p className="message info">The number was: {answer}</p>}
+        {showAnswer && <p className="message info">The hidden number was: {answer}</p>}
         {message && (
           <p
             className={`message ${message.includes("Error") ? "error" : "info"}`}
