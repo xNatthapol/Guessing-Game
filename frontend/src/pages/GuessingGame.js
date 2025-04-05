@@ -2,13 +2,14 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import AccountActions from "../components/AccountActions";
 import { submitGuess, getAnswer } from "../services/game";
+import "./GuessingGame.css";
 
 const GuessingGame = () => {
   const [guess, setGuess] = useState("");
   const [message, setMessage] = useState("");
   const [showAnswer, setShowAnswer] = useState(false);
   const [answer, setAnswer] = useState(null);
-  const { token, logout } = useAuth();
+  const { token } = useAuth();
   const [showAccountActions, setShowAccountActions] = useState(false);
 
   const setTimedMessage = (msg) => {
@@ -43,43 +44,50 @@ const GuessingGame = () => {
   };
 
   return (
-    <div>
-      <h1>Guessing Game</h1>
-      <p>Guess a hidden number between 1 and 10</p>
-      <button onClick={logout} style={{ float: "right" }}>
-        Logout
-      </button>
+    <div className="game-container">
+      <div className="account-controls">
+        <button
+          onClick={() => setShowAccountActions(!showAccountActions)}
+          className="game-button secondary"
+        >
+          Account
+        </button>
+        {showAccountActions && (
+          <AccountActions onClose={() => setShowAccountActions(false)} />
+        )}
+      </div>
 
-      <form onSubmit={handleSubmit}>
+      <h1 className="game-title">Guessing Game</h1>
+      <p className="game-description">Guess a hidden number between 1 and 10</p>
+
+      <form onSubmit={handleSubmit} className="game-form">
         <input
           type="number"
           min="1"
           max="10"
           value={guess}
           onChange={(e) => setGuess(e.target.value)}
+          className="game-input"
           required
         />
-        <button type="submit">Submit Guess</button>
-      </form>
-
-      <button onClick={handleShowAnswer}>Show Answer</button>
-
-      <div style={{ position: "relative", display: "inline-block" }}>
-        <button
-          onClick={() => setShowAccountActions(!showAccountActions)}
-          style={{ marginRight: "1rem" }}
-        >
-          Account
+        <button type="submit" className="game-button guess">
+          Guess
         </button>
+      </form>
+      <button onClick={handleShowAnswer} className="game-button answer">
+        Show Answer
+      </button>
 
-        {showAccountActions && (
-          <AccountActions onClose={() => setShowAccountActions(false)} />
+      <div className="message-container">
+        {showAnswer && <p className="message info">The number was: {answer}</p>}
+        {message && (
+          <p
+            className={`message ${message.includes("Error") ? "error" : "info"}`}
+          >
+            {message}
+          </p>
         )}
       </div>
-
-      {showAnswer && <p>The number was: {answer}</p>}
-      {message && <p>{message}</p>}
-
     </div>
   );
 };

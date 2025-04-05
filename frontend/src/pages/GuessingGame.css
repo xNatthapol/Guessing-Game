@@ -1,0 +1,108 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin: 10vh auto 0;
+  padding: 2rem;
+  position: relative;
+}
+
+.game-title {
+  font-family: "Bungee Spice", sans-serif;
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.game-description {
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 2.5rem;
+  color: #555;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.game-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.game-input {
+  padding: 0.75rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+}
+
+.game-input::-webkit-outer-spin-button,
+.game-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.game-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 200px;
+  text-align: center;
+}
+
+.game-button.guess {
+  background-color: #ea5900;
+  color: white;
+}
+
+.game-button.answer {
+  background-color: #f1f1f1;
+  margin-top: 1rem;
+}
+
+.account-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.message {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+}
+
+.message.info {
+  background-color: #ffe4af;
+  color: #ca0f00;
+}
+
+.message.error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}

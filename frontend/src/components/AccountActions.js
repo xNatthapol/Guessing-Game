@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { deleteUser, getUserProfile } from "../services/user";
 import { useNavigate } from "react-router-dom";
+import "./AccountActions.css";
 
 const AccountActions = ({ onClose }) => {
   const { token, logout } = useAuth();
@@ -40,18 +41,40 @@ const AccountActions = ({ onClose }) => {
   };
 
   return (
-    <div>
-      {currentUsername && <p>Username: {currentUsername}</p>}
+    <div className="account-actions">
+      {currentUsername && (
+        <div className="user-info">
+          <p>
+            Logged in as: <strong>{currentUsername}</strong>
+          </p>
+        </div>
+      )}
 
-      <button onClick={() => navigate("/change-username")}>
-        Change Username
+      <div className="actions-list">
+        <button
+          className="action-btn change-username"
+          onClick={() => navigate("/change-username")}
+        >
+          Change Username
+        </button>
+
+        <button className="action-btn logout" onClick={logout}>
+          Logout
+        </button>
+
+        <button
+          className="action-btn delete-account"
+          onClick={handleDeleteAccount}
+        >
+          Delete Account
+        </button>
+      </div>
+
+      {message && <p className="error-message">{message}</p>}
+
+      <button className="close-btn" onClick={onClose}>
+        Close
       </button>
-
-      <button onClick={handleDeleteAccount}>Delete Account</button>
-
-      {message && <p>{message}</p>}
-
-      <button onClick={onClose}>Close</button>
     </div>
   );
 };

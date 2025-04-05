@@ -1,0 +1,91 @@
+.account-actions {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  min-width: 220px;
+  z-index: 1000;
+}
+
+.user-info {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.user-info strong {
+  color: #ca0f00;
+}
+
+.actions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.action-btn {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.action-btn.change-username {
+  background-color: #ffedc9;
+  color: #ca0f00;
+}
+
+.action-btn.change-username:hover {
+  background: #ffe2a5;
+}
+
+.action-btn.logout {
+  background: #f8f9fa;
+  color: #333;
+}
+
+.action-btn.logout:hover {
+  background: #e9ecef;
+}
+
+.action-btn.delete-account {
+  background: #fff0f0;
+  color: #dc2626;
+}
+
+.action-btn.delete-account:hover {
+  background: #fee2e2;
+}
+
+.error-message {
+  color: #dc2626;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: #fee2e2;
+  border-radius: 4px;
+}
+
+.close-btn {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  text-align: center;
+}
+
+.close-btn:hover {
+  color: #333;
+  text-decoration: underline;
+}
