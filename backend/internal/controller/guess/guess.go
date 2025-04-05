@@ -37,6 +37,6 @@ func GuessNumber(c *gin.Context) {
 }
 
 func AnswerNumber(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"status": "ok", "answer": hiddenNumber, "message": "New number generated!"})
+	c.JSON(http.StatusOK, gin.H{"status": "ok", "answer": hiddenNumber, "message": "New hidden number generated!"})
 	hiddenNumber = generateNewNumber()
 }
