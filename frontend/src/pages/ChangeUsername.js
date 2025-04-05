@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { updateUsername } from "../services/user";
 import { useNavigate } from "react-router-dom";
+import "./ChangeUsername.css";
 
 const ChangeUsername = () => {
   const [newUsername, setNewUsername] = useState("");
@@ -29,17 +30,16 @@ const ChangeUsername = () => {
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "2rem auto" }}>
-      <h2>Change Username</h2>
+    <div className="container">
+      <h2 className="title">Change Username</h2>
+
       {message.text && (
-        <p style={{ color: message.isError ? "red" : "green" }}>
+        <p className={`message ${message.isError ? "error" : "success"}`}>
           {message.text}
         </p>
       )}
-      <form
-        onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-      >
+
+      <form onSubmit={handleSubmit} className="form">
         <input
           type="text"
           value={newUsername}
@@ -48,12 +48,20 @@ const ChangeUsername = () => {
             setMessage({ text: "", isError: false });
           }}
           placeholder="Enter new username"
+          className="input"
           required
           minLength="3"
         />
-        <div style={{ display: "flex", gap: "1rem" }}>
-          <button type="submit">Update</button>
-          <button type="button" onClick={() => navigate("/")}>
+
+        <div className="buttons">
+          <button type="submit" className="button primary">
+            Update
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate("/")}
+            className="button secondary"
+          >
             Cancel
           </button>
         </div>
