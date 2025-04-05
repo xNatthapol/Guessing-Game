@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { login } from "../services/auth";
 import { useLocation, useNavigate, Link } from "react-router-dom";
+import "./AuthForms.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -30,31 +31,38 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <div>{error && <p style={{ color: "red" }}>{error}</p>}</div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
+    <div className="auth-container">
+      <h2 className="auth-title">Login</h2>
+      {error && <p className="auth-message error">{error}</p>}
+      <form onSubmit={handleSubmit} className="auth-form">
+        <div className="auth-form-group">
+          <label className="auth-label">Username:</label>
           <input
             type="text"
+            className="auth-input"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Password:</label>
+        <div className="auth-form-group">
+          <label className="auth-label">Password:</label>
           <input
             type="password"
+            className="auth-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <button type="submit">Login</button>
-        <p style={{ marginTop: "1rem" }}>
-          Don't have an account? <Link to="/register">Register here</Link>
+        <button type="submit" className="auth-button">
+          Login
+        </button>
+        <p className="auth-footer-text">
+          Don't have an account?{" "}
+          <Link to="/register" className="auth-link">
+            Register here
+          </Link>
         </p>
       </form>
     </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { register } from "../services/auth";
 import { useNavigate, Link } from "react-router-dom";
+import "./AuthForms.css";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -27,39 +28,44 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <div>
-        {error ? (
-          <p style={{ color: "red" }}>{error}</p>
-        ) : success ? (
-          <p style={{ color: "green" }}>{success}</p>
-        ) : null}
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
+    <div className="auth-container">
+      <h2 className="auth-title">Register</h2>
+      {error ? (
+        <p className="auth-message error">{error}</p>
+      ) : success ? (
+        <p className="auth-message success">{success}</p>
+      ) : null}
+      <form onSubmit={handleSubmit} className="auth-form">
+        <div className="auth-form-group">
+          <label className="auth-label">Username:</label>
           <input
             type="text"
+            className="auth-input"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
-        <div>
-          <label>Password:</label>
+        <div className="auth-form-group">
+          <label className="auth-label">Password:</label>
           <input
             type="password"
+            className="auth-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit" className="auth-button">
+          Register
+        </button>
+        <p className="auth-footer-text">
+          Already have an account?{" "}
+          <Link to="/login" className="auth-link">
+            Login here
+          </Link>
+        </p>
       </form>
-      <p style={{ marginTop: "1rem" }}>
-        Already have an account? <Link to="/login">Login here</Link>
-      </p>
     </div>
   );
 };
